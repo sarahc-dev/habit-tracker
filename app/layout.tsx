@@ -1,8 +1,13 @@
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Quicksand } from "next/font/google"
 import "./globals.css"
+import { cn } from "@/lib/utils"
 
-const inter = Inter({ subsets: ["latin"] })
+const fontSans = Quicksand({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-sans",
+})
 
 export const metadata: Metadata = {
   title: "Habit Tracker",
@@ -17,7 +22,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`flex min-h-screen antialiased ${inter.className}`}>
+      <body
+        className={cn(
+          "flex min-h-screen font-sans antialiased",
+          fontSans.variable
+        )}
+      >
         {children}
       </body>
     </html>

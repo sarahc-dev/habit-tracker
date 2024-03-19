@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
 import { Quicksand } from "next/font/google"
-import "./globals.css"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { cn } from "@/lib/utils"
+import "./globals.css"
 
 const fontSans = Quicksand({
   subsets: ["latin"],
@@ -29,6 +30,7 @@ export default function RootLayout({
         )}
       >
         {children}
+        <SpeedInsights />
       </body>
     </html>
   )

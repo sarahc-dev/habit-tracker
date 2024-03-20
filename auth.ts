@@ -12,4 +12,8 @@ export const {
   ...authConfig,
   adapter: DrizzleAdapter(db),
   session: { strategy: "jwt" },
+  pages: {
+    signIn: "/login",
+    error: "/error",
+  },
 })

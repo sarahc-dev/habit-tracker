@@ -4,16 +4,23 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:test": "NODE_ENV=test next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "analyse": "ANALYZE=true next build",
     "test:jest": "jest",
     "test:jest:watch": "jest --watch",
-    "cypress:open": "cypress open",
+    "cypress:open": "echo '🛑 Are you running test server?' && cypress open",
     "cypress:e2e": "cypress run --e2e",
     "cypress:component": "cypress run --component",
-    "db:push": "drizzle-kit push:pg"
+    "migration:generate": "drizzle-kit generate:pg --schema=db/schemas/",
+    "migration:push": "tsx db/migrate.ts",
+    "db:push": "drizzle-kit push:pg",
+    "db:migrate": "npm run migration:generate && npm run migration:push",
+    "db:migrate:test": "tsx --env-file=.env.test db/migrate.ts",
+    "db:reset": "tsx db/reset.ts",
+    "db:reset:test": "if [[ -f .env.test ]]; then tsx --env-file=.env.test db/reset.ts; else npm run db:reset; fi"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^0.8.1",
@@ -60,6 +67,7 @@
     "prettier-plugin-tailwindcss": "^0.5.12",
     "tailwindcss": "^3.3.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.7.1",
     "typescript": "^5"
   }
 }

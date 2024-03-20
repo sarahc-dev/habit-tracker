@@ -108,7 +108,7 @@ export default function SignupForm() {
         ></FormField>
         <FormError message={status.error} />
         <FormSuccess message={status.success} />
-        <SubmitButton pending={pending}>Signup</SubmitButton>
+        <SubmitButton pending={pending}>Sign Up</SubmitButton>
       </form>
     </Form>
   )

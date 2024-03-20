@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from "./button"
+import { Button } from "../ui/button"
 
 export default function SubmitButton({
   pending,
@@ -14,7 +14,7 @@ export default function SubmitButton({
       type="submit"
       disabled={pending}
       aria-disabled={pending}
-      className="w-full disabled:bg-red-500"
+      className="w-full"
     >
       {children}
     </Button>

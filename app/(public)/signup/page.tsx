@@ -13,7 +13,7 @@ export default function SignupPage() {
     <main className="flex flex-1 items-center justify-center px-16">
       <Card className="max-w-md">
         <CardHeader>
-          <h1 className="text-xl font-bold">Signup</h1>
+          <h1 className="text-xl font-bold">Sign Up</h1>
           <p>
             Sign up using one of the following services and start building good
             habits today.
@@ -27,8 +27,8 @@ export default function SignupPage() {
           <SignupForm />
           <div className="mt-3 text-center text-sm">
             Already have an account?
-            <Link href="/signin" className="text-accent ml-1">
-              Sign in
+            <Link href="/login" className="text-accent ml-1">
+              Login
             </Link>
           </div>
         </CardContent>

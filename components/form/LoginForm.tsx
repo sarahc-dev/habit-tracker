@@ -79,7 +79,7 @@ export default function LoginForm() {
           )}
         ></FormField>
         <FormError message={error} />
-        <SubmitButton pending={pending}>Signup</SubmitButton>
+        <SubmitButton pending={pending}>Login</SubmitButton>
       </form>
     </Form>
   )

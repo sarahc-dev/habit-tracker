@@ -3,7 +3,16 @@ import { drizzle } from "drizzle-orm/neon-http"
 import { eq } from "drizzle-orm"
 import { users } from "./schemas/users"
 
-const queryClient = neon(process.env.DATABASE_URL!)
+let connectionString = process.env.DATABASE_URL
+
+if (
+  process.env.VERCEL_ENV === "preview" &&
+  process.env.NEXT_PUBLIC_DATABASE_URL
+) {
+  connectionString = process.env.NEXT_PUBLIC_DATABASE_URL
+}
+
+const queryClient = neon(connectionString!)
 const db = drizzle(queryClient)
 
 export default db

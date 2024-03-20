@@ -26,3 +26,9 @@ export const SignupSchema = z
     message: "Passwords don't match",
     path: ["confirmPassword"],
   })
+
+export const AddHabitSchema = z.object({
+  title: z.string().min(1, {
+    message: "Enter a new habit",
+  }),
+})

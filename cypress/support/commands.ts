@@ -35,3 +35,26 @@
 //     }
 //   }
 // }
+
+declare namespace Cypress {
+  interface Chainable {
+    signup(email: string, password: string): Chainable<void>
+    signin(email: string, password: string): Chainable<void>
+  }
+}
+
+Cypress.Commands.add("signup", (email, password) => {
+  cy.visit("/signup")
+  cy.get("input[name=email]").type(email)
+  cy.get("input[name=password]").type(password)
+  cy.get("input[name=confirmPassword]").type(`${password}{enter}`)
+  cy.contains("Successfully signed up")
+})
+
+Cypress.Commands.add("signin", (email, password) => {
+  cy.visit("/login")
+  cy.get("input[name=email]").type(email)
+  cy.get("input[name=password]").type(`${password}{enter}`)
+  cy.url().should("include", "/dashboard")
+  cy.getCookie("authjs.session-token").should("exist")
+})

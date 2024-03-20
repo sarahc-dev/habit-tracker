@@ -1,0 +1,1 @@
+ALTER TABLE "habits" ADD COLUMN "user_id" text NOT NULL;

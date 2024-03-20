@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Card, CardHeader, CardContent } from "@/components/ui/card"
-import SocialLogin from "@/components/SocialLogin"
-import LoginForm from "@/components/LoginForm"
+import SocialLogin from "@/components/form/SocialLogin"
+import LoginForm from "@/components/form/LoginForm"
 
 export const metadata: Metadata = {
   title: "Login | Habit Tracker",

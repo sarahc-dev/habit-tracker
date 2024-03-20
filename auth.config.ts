@@ -1,4 +1,6 @@
 import type { NextAuthConfig } from "next-auth"
+import Google from "next-auth/providers/google"
+import Github from "next-auth/providers/github"
 import Credentials from "next-auth/providers/credentials"
 import bcrypt from "bcryptjs"
 import { LoginSchema } from "@/lib/schemas"
@@ -6,6 +8,8 @@ import { getUserByEmail } from "@/db"
 
 export const authConfig = {
   providers: [
+    Google,
+    Github,
     Credentials({
       async authorize(credentials) {
         const validatedFields = LoginSchema.safeParse(credentials)

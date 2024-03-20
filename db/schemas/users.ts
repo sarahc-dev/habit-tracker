@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm"
 import {
   timestamp,
   pgTable,
@@ -7,6 +8,7 @@ import {
 } from "drizzle-orm/pg-core"
 import { sql } from "drizzle-orm"
 import type { AdapterAccount } from "@auth/core/adapters"
+import { habits } from ".."
 
 export const users = pgTable("user", {
   id: text("id")
@@ -18,6 +20,10 @@ export const users = pgTable("user", {
   image: text("image"),
   password: text("password"),
 })
+
+export const usersRelations = relations(users, ({ many }) => ({
+  habits: many(habits),
+}))
 
 export const accounts = pgTable(
   "account",

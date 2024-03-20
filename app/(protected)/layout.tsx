@@ -1,16 +1,30 @@
+import type { Metadata } from "next"
+import HabitsContextProvider from "@/contexts/HabitsContext"
 import DashboardHeader from "@/components/layout/DashboardHeader"
 import Footer from "@/components/layout/Footer"
+import { auth } from "@/auth"
+import { getHabits } from "@/db"
 
-export default function Dashboardlayout({
+export const metadata: Metadata = {
+  title: "Dashboard | Habit Tracker",
+}
+
+export default async function Dashboardlayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const session = await auth()
+  if (!session?.user?.id) return null
+
+  const data = await getHabits(session?.user.id)
   return (
     <>
-      <DashboardHeader />
-      {children}
-      <Footer />
+      <HabitsContextProvider habits={data}>
+        <DashboardHeader />
+        {children}
+        <Footer />
+      </HabitsContextProvider>
     </>
   )
 }

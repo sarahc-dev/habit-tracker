@@ -16,4 +16,13 @@ export const {
     signIn: "/login",
     error: "/error",
   },
+  callbacks: {
+    // to expose data like user id it on the client side
+    async session({ token, session }) {
+      if (token.sub && session.user) {
+        session.user.id = token.sub
+      }
+      return session
+    },
+  },
 })

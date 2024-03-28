@@ -4,7 +4,7 @@ import DashboardHeader from "@/components/layout/DashboardHeader"
 import Footer from "@/components/layout/Footer"
 import { Toaster } from "@/components/ui/toaster"
 import { auth } from "@/auth"
-import { getHabits } from "@/db"
+import { getHabits } from "@/db/queries/getHabits"
 
 export const metadata: Metadata = {
   title: "Dashboard | Habit Tracker",

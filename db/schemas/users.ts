@@ -8,7 +8,7 @@ import {
 } from "drizzle-orm/pg-core"
 import { sql } from "drizzle-orm"
 import type { AdapterAccount } from "@auth/core/adapters"
-import { habits } from ".."
+import { habits } from "./habits"
 
 export const users = pgTable("user", {
   id: text("id")

@@ -1,22 +1,21 @@
+import { drizzle } from "drizzle-orm/neon-http"
+import { neon } from "@neondatabase/serverless"
 import { loadEnvConfig } from "@next/env"
-import { drizzle } from "drizzle-orm/postgres-js"
 import { users } from "./schemas/users"
 import { habits } from "./schemas/habits"
-import postgres from "postgres"
 
-const projectDir = process.cwd()
-loadEnvConfig(projectDir)
+loadEnvConfig(process.cwd())
+
+const connectionString = process.env.DATABASE_URL
+
+if (!connectionString) {
+  throw new Error("DATABASE_URL environment variable not set")
+}
+
+const queryClient = neon(connectionString)
+const db = drizzle(queryClient)
 
 const resetDb = async () => {
-  const connectionString = process.env.DATABASE_URL
-
-  if (!connectionString) {
-    throw new Error("DATABASE_URL environment variable not set")
-  }
-
-  const queryClient = postgres(connectionString)
-  const db = drizzle(queryClient)
-
   try {
     await db.delete(users)
     await db.delete(habits)

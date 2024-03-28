@@ -1,6 +1,7 @@
 "use client"
 
 import { useHabitsContext } from "@/contexts/HabitsContext"
+import Habit from "./Habit"
 
 export default function HabitsList() {
   const { optimisticHabits } = useHabitsContext()
@@ -9,11 +10,9 @@ export default function HabitsList() {
       {optimisticHabits.length === 0 ? (
         <div>You have not added any habits yet.</div>
       ) : (
-        <ul>
+        <ul aria-label="habits list - click to complete" className="space-y-3">
           {optimisticHabits.map((habit) => (
-            <li key={habit.id} data-testid={habit.id}>
-              {habit.title}
-            </li>
+            <Habit key={habit.id} habit={habit} />
           ))}
         </ul>
       )}

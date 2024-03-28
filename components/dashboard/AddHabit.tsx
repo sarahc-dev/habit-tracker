@@ -8,13 +8,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { Button } from "../ui/button"
 import AddHabitForm from "../form/AddHabitForm"
 
 export default function AddHabit() {
   const [open, setOpen] = useState(false)
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger>Add Habit</DialogTrigger>
+      <DialogTrigger asChild>
+        <Button>Add Habit</Button>
+      </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Add a new habit</DialogTitle>

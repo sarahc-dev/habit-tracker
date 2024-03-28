@@ -5,7 +5,7 @@ import { HabitType } from "@/lib/types"
 
 type HabitsContextType = {
   optimisticHabits: HabitType[]
-  addOptimisticHabit: (habit: HabitType) => void
+  setOptimisticHabits: (action: { action: string; habit: HabitType }) => void
   userId: string
 }
 
@@ -22,16 +22,21 @@ export default function HabitsContextProvider({
   habits: HabitType[]
   userId: string
 }) {
-  const [optimisticHabits, addOptimisticHabit] = useOptimistic(
+  const [optimisticHabits, setOptimisticHabits] = useOptimistic(
     habits,
-    (state: HabitType[], newHabit: HabitType) => {
-      return [...state, newHabit]
+    (state, { action, habit }: { action: string; habit: HabitType }) => {
+      switch (action) {
+        case "markComplete":
+          return state.map((h) => (h.id === habit.id ? habit : h))
+        default:
+          return [...state, habit]
+      }
     }
   )
 
   return (
     <HabitsContext.Provider
-      value={{ optimisticHabits, addOptimisticHabit, userId }}
+      value={{ optimisticHabits, setOptimisticHabits, userId }}
     >
       {children}
     </HabitsContext.Provider>

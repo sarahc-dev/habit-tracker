@@ -13,6 +13,7 @@ import {
   FormMessage,
 } from "../ui/form"
 import { Input } from "../ui/input"
+import { Button } from "../ui/button"
 import { useHabitsContext } from "@/contexts/HabitsContext"
 import { AddHabitSchema } from "@/lib/schemas"
 import { addHabit } from "@/actions/add-habit"
@@ -21,7 +22,7 @@ import { useToast } from "@/components/ui/use-toast"
 type SetOpenType = React.Dispatch<React.SetStateAction<boolean>>
 
 export default function AddHabitForm({ setOpen }: { setOpen: SetOpenType }) {
-  const { addOptimisticHabit, userId } = useHabitsContext()
+  const { setOptimisticHabits, userId } = useHabitsContext()
   const { toast } = useToast()
 
   const form = useForm<z.infer<typeof AddHabitSchema>>({
@@ -33,7 +34,10 @@ export default function AddHabitForm({ setOpen }: { setOpen: SetOpenType }) {
 
   async function onSubmit(values: z.infer<typeof AddHabitSchema>) {
     startTransition(() => {
-      addOptimisticHabit({ ...values, id: Math.floor(Math.random() * 1000) })
+      setOptimisticHabits({
+        action: "add",
+        habit: { ...values, id: 0 },
+      })
     })
 
     setOpen(false)
@@ -64,9 +68,9 @@ export default function AddHabitForm({ setOpen }: { setOpen: SetOpenType }) {
           )}
         />
 
-        <button type="submit" data-testid="submitAddHabit">
+        <Button type="submit" data-testid="submitAddHabit">
           Add Habit
-        </button>
+        </Button>
       </form>
     </Form>
   )

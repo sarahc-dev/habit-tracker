@@ -18,7 +18,10 @@ export default async function Dashboardlayout({
   const session = await auth()
   if (!session?.user?.id) return null
 
-  const data = await getHabits(session?.user.id)
+  const today = new Date()
+
+  const data = await getHabits(session?.user.id, today)
+  console.log(data)
   return (
     <>
       <HabitsContextProvider habits={data} userId={session?.user.id}>

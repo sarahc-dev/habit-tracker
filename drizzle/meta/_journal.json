@@ -15,6 +15,13 @@
       "when": 1711552007229,
       "tag": "0001_needy_phil_sheldon",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1711672904528,
+      "tag": "0002_pink_purifiers",
+      "breakpoints": true
     }
   ]
 }

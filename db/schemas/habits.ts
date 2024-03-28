@@ -12,7 +12,9 @@ import { users } from "./users"
 export const habits = pgTable("habits", {
   id: serial("id").primaryKey(),
   title: varchar("title", { length: 256 }).notNull(),
-  userId: text("user_id").notNull(),
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
 })
 
 export const habitsRelations = relations(habits, ({ one, many }) => ({
@@ -22,7 +24,7 @@ export const habitsRelations = relations(habits, ({ one, many }) => ({
 
 export const checkins = pgTable("checkins", {
   id: serial("id").primaryKey(),
-  timestamp: timestamp("timestamp").defaultNow(),
+  timestamp: timestamp("timestamp").notNull(),
   habitId: integer("habitId")
     .notNull()
     .references(() => habits.id, { onDelete: "cascade" }),

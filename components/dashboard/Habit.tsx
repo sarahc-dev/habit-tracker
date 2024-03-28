@@ -1,16 +1,42 @@
+import { startTransition } from "react"
+import { useHabitsContext } from "@/contexts/HabitsContext"
 import { HabitType } from "@/lib/types"
 import { Card, CardContent } from "../ui/card"
 import { FiCheckCircle, FiCircle } from "react-icons/fi"
 import { HiOutlineDotsVertical } from "react-icons/hi"
+import { checkinHabit } from "@/actions/checkin-habit"
 import { useToast } from "@/components/ui/use-toast"
 
 export default function Habit({ habit }: { habit: HabitType }) {
+  const { setOptimisticHabits } = useHabitsContext()
   const { toast } = useToast()
 
-  const checked = false
+  const checked = habit.checkins?.length === 1
 
   async function handleCheckin() {
-    console.log("checked")
+    if (!checked) {
+      startTransition(() => {
+        setOptimisticHabits({
+          action: "markComplete",
+          habit: {
+            ...habit,
+            checkins: [{ id: 1, timestamp: new Date(), habitId: habit.id }],
+          },
+        })
+      })
+
+      try {
+        // TODO: change date
+        await checkinHabit(habit.id, new Date())
+      } catch (error) {
+        toast({
+          variant: "destructive",
+          title: "Uh oh! Something went wrong.",
+          description:
+            "There was a problem with your request. Please try again.",
+        })
+      }
+    }
   }
 
   return (

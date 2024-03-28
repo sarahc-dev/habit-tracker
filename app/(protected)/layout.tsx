@@ -17,10 +17,10 @@ export default async function Dashboardlayout({
 }) {
   const session = await auth()
   if (!session?.user?.id) return null
+  // will get date from search params? - layouts don't receive searchParams, need to move context provider?
+  const date = new Date()
 
-  const today = new Date()
-
-  const data = await getHabits(session?.user.id, today)
+  const data = await getHabits(session?.user.id, date)
   console.log(data)
   return (
     <>

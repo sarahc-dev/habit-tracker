@@ -10,7 +10,7 @@ const createJestConfig = nextJest({
 const config: Config = {
   coverageProvider: "v8",
   testEnvironment: "jsdom",
-  moduleDirectories: ["node_modules", "<rootDir>/"],
+  clearMocks: true,
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/$1",
   },

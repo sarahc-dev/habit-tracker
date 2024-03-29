@@ -1,4 +1,5 @@
 import { signOut } from "@/auth"
+import CalendarPicker from "../dashboard/CalendarPicker"
 
 export default function DashboardHeader() {
   return (
@@ -13,6 +14,7 @@ export default function DashboardHeader() {
           Sign Out
         </button>
       </form>
+      <CalendarPicker />
     </header>
   )
 }

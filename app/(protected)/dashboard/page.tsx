@@ -3,9 +3,15 @@ import HabitsContextProvider from "@/contexts/HabitsContext"
 import HabitsList from "@/components/dashboard/HabitsList"
 import AddHabit from "@/components/dashboard/AddHabit"
 import { auth } from "@/auth"
-import { getDateString, getNextDate, getPreviousDate } from "@/lib/dateUtils"
+import {
+  getDateString,
+  getNextDate,
+  getPreviousDate,
+  getRelativeDate,
+} from "@/lib/dateUtils"
 import { getHabits } from "@/db/queries/getHabits"
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi"
+import { relative } from "path"
 
 export default async function DashboardPage({
   searchParams,
@@ -20,6 +26,7 @@ export default async function DashboardPage({
     : new Date()
 
   const currentDate = getDateString(date)
+  const relativeDate = getRelativeDate(date)
 
   const data = await getHabits(session?.user.id, date)
   return (
@@ -31,7 +38,7 @@ export default async function DashboardPage({
             <span className="sr-only">Previous day</span>
           </Link>
 
-          <div className="font-bold">{currentDate}</div>
+          <div className="font-bold">{relativeDate}</div>
           <Link href={`/dashboard?date=${getNextDate(currentDate)}`}>
             <FiArrowRight />
             <span className="sr-only">Next day</span>

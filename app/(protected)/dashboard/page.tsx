@@ -1,4 +1,3 @@
-import { auth } from "@/auth"
 import { getDateString } from "@/lib/dateUtils"
 import HabitsList from "@/components/dashboard/HabitsList"
 import AddHabit from "@/components/dashboard/AddHabit"

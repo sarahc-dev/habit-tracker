@@ -3,8 +3,9 @@ import { useHabitsContext } from "@/contexts/HabitsContext"
 import { HabitType } from "@/lib/types"
 import { Card, CardContent } from "../ui/card"
 import { FiCheckCircle, FiCircle } from "react-icons/fi"
-import { HiOutlineDotsVertical } from "react-icons/hi"
 import { checkinHabit } from "@/actions/checkin-habit"
+import { uncheckHabit } from "@/actions/uncheck-habit"
+import HabitMenu from "./HabitMenu"
 import { useToast } from "@/components/ui/use-toast"
 
 export default function Habit({ habit }: { habit: HabitType }) {
@@ -39,6 +40,29 @@ export default function Habit({ habit }: { habit: HabitType }) {
     }
   }
 
+  async function handleUncheck() {
+    if (checked) {
+      startTransition(() => {
+        setOptimisticHabits({
+          action: "undoComplete",
+          habit: habit,
+        })
+      })
+
+      try {
+        // TODO: change date
+        await uncheckHabit(habit.id, new Date())
+      } catch (error) {
+        toast({
+          variant: "destructive",
+          title: "Uh oh! Something went wrong.",
+          description:
+            "There was a problem with your request. Please try again.",
+        })
+      }
+    }
+  }
+
   return (
     <Card
       role="listitem"
@@ -53,11 +77,11 @@ export default function Habit({ habit }: { habit: HabitType }) {
           {checked ? <FiCheckCircle size="1em" /> : <FiCircle size="1em" />}
           {habit.title}
         </button>
-        <button
-          className={`border-l p-6 pl-4 ${checked && "border-black border-opacity-40"}`}
-        >
-          <HiOutlineDotsVertical />
-        </button>
+        <HabitMenu
+          checked={checked}
+          handleCheckin={handleCheckin}
+          handleUncheck={handleUncheck}
+        />
       </CardContent>
     </Card>
   )

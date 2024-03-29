@@ -21,7 +21,7 @@ export default async function Dashboardlayout({
   const date = new Date()
 
   const data = await getHabits(session?.user.id, date)
-  console.log(data)
+  // console.log(data)
   return (
     <>
       <HabitsContextProvider habits={data} userId={session?.user.id}>

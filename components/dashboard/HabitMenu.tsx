@@ -5,8 +5,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { HiOutlineDotsVertical } from "react-icons/hi"
-import { FiCheck, FiEdit3 } from "react-icons/fi"
-import { CiUndo } from "react-icons/ci"
+import { FiCheck } from "react-icons/fi"
+import { CiUndo, CiEdit } from "react-icons/ci"
+import { GoGraph } from "react-icons/go"
 
 type HabitMenuProps = {
   checked: boolean
@@ -42,9 +43,16 @@ export default function HabitMenu({
         </DropdownMenuItem>
         <DropdownMenuItem>
           <>
-            <FiEdit3 />
+            <CiEdit />
             {/* TODO: Open edit habit modal */}
             <span className="ml-2">Edit</span>
+          </>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <>
+            <GoGraph />
+            {/* TODO: Show habit progress */}
+            <span className="ml-2">View progress</span>
           </>
         </DropdownMenuItem>
       </DropdownMenuContent>

@@ -1,11 +1,14 @@
 "use client"
 
 import { createContext, useContext, useOptimistic } from "react"
-import { HabitType } from "@/lib/types"
+import { OptimisticHabitType } from "@/lib/types"
 
 type HabitsContextType = {
-  optimisticHabits: HabitType[]
-  setOptimisticHabits: (action: { action: string; habit: HabitType }) => void
+  optimisticHabits: OptimisticHabitType[]
+  setOptimisticHabits: (action: {
+    action: string
+    habit: OptimisticHabitType
+  }) => void
   userId: string
   date: Date
 }
@@ -21,13 +24,16 @@ export default function HabitsContextProvider({
   date,
 }: {
   children: React.ReactNode
-  habits: HabitType[]
+  habits: OptimisticHabitType[]
   userId: string
   date: Date
 }) {
   const [optimisticHabits, setOptimisticHabits] = useOptimistic(
     habits,
-    (state, { action, habit }: { action: string; habit: HabitType }) => {
+    (
+      state,
+      { action, habit }: { action: string; habit: OptimisticHabitType }
+    ) => {
       switch (action) {
         case "markComplete":
           return state.map((h) => (h.id === habit.id ? habit : h))

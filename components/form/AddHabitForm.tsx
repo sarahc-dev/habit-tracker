@@ -36,7 +36,7 @@ export default function AddHabitForm({ setOpen }: { setOpen: SetOpenType }) {
     startTransition(() => {
       setOptimisticHabits({
         action: "add",
-        habit: { ...values, id: 0 },
+        habit: { ...values, id: 0, checkins: [] },
       })
     })
 

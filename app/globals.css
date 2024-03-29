@@ -74,3 +74,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+.progress-stroke {
+  stroke-dasharray: 450;
+  stroke-dashoffset: 100;
+}

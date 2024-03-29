@@ -1,17 +1,8 @@
-import Link from "next/link"
 import HabitsContextProvider from "@/contexts/HabitsContext"
-import HabitsList from "@/components/dashboard/HabitsList"
-import AddHabit from "@/components/dashboard/AddHabit"
 import { auth } from "@/auth"
-import {
-  getDateString,
-  getNextDate,
-  getPreviousDate,
-  getRelativeDate,
-} from "@/lib/dateUtils"
 import { getHabits } from "@/db/queries/getHabits"
-import { FiArrowLeft, FiArrowRight } from "react-icons/fi"
-import { relative } from "path"
+import HabitContainer from "@/components/dashboard/HabitContainer"
+import DayStats from "@/components/dashboard/DayStats"
 
 export default async function DashboardPage({
   searchParams,
@@ -25,28 +16,12 @@ export default async function DashboardPage({
     ? new Date(searchParams["date"])
     : new Date()
 
-  const currentDate = getDateString(date)
-  const relativeDate = getRelativeDate(date)
-
   const data = await getHabits(session?.user.id, date)
   return (
     <HabitsContextProvider habits={data} userId={session?.user.id} date={date}>
-      <main className="flex-1 px-16">
-        <div className="flex items-center gap-4">
-          <Link href={`/dashboard?date=${getPreviousDate(currentDate)}`}>
-            <FiArrowLeft />
-            <span className="sr-only">Previous day</span>
-          </Link>
-
-          <div className="font-bold">{relativeDate}</div>
-          <Link href={`/dashboard?date=${getNextDate(currentDate)}`}>
-            <FiArrowRight />
-            <span className="sr-only">Next day</span>
-          </Link>
-        </div>
-
-        <HabitsList />
-        <AddHabit />
+      <main className="flex flex-1 gap-6 px-16">
+        <HabitContainer date={date} />
+        <DayStats />
       </main>
     </HabitsContextProvider>
   )

@@ -1,6 +1,6 @@
 import { startTransition } from "react"
 import { useHabitsContext } from "@/contexts/HabitsContext"
-import { HabitType } from "@/lib/types"
+import { OptimisticHabitType } from "@/lib/types"
 import { Card, CardContent } from "../ui/card"
 import { FiCheckCircle, FiCircle } from "react-icons/fi"
 import { checkinHabit } from "@/actions/checkin-habit"
@@ -8,11 +8,11 @@ import { uncheckHabit } from "@/actions/uncheck-habit"
 import HabitMenu from "./HabitMenu"
 import { useToast } from "@/components/ui/use-toast"
 
-export default function Habit({ habit }: { habit: HabitType }) {
+export default function Habit({ habit }: { habit: OptimisticHabitType }) {
   const { setOptimisticHabits, date } = useHabitsContext()
   const { toast } = useToast()
 
-  const checked = habit.checkins?.length === 1
+  const checked = habit.checkins.length === 1
 
   async function handleCheckin() {
     if (!checked) {
@@ -64,7 +64,7 @@ export default function Habit({ habit }: { habit: HabitType }) {
   return (
     <Card
       role="listitem"
-      className={`w-1/3 ${checked && "bg-secondary"}`}
+      className={`${checked && "bg-secondary"}`}
       data-testid={habit.id}
     >
       <CardContent className="flex items-center p-0">

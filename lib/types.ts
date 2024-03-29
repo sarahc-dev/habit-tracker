@@ -4,8 +4,11 @@ type CheckinType = {
   habitId: number
 }
 
-export type HabitType = {
+export interface HabitType {
   id: number
   title: string
-  checkins?: CheckinType[]
+}
+
+export interface OptimisticHabitType extends HabitType {
+  checkins: CheckinType[]
 }

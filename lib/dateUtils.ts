@@ -21,8 +21,6 @@ export function getPreviousDate(date: string): string {
 export function getRelativeDate(date: Date): string {
   const dateString = date.toISOString().split("T")[0]
   const today = new Date().toISOString().split("T")[0]
-  console.log("DateString: ", dateString)
-  console.log("Today", today)
 
   if (dateString === today) {
     return "Today"

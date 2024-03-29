@@ -9,7 +9,7 @@ import HabitMenu from "./HabitMenu"
 import { useToast } from "@/components/ui/use-toast"
 
 export default function Habit({ habit }: { habit: HabitType }) {
-  const { setOptimisticHabits } = useHabitsContext()
+  const { setOptimisticHabits, date } = useHabitsContext()
   const { toast } = useToast()
 
   const checked = habit.checkins?.length === 1
@@ -21,14 +21,13 @@ export default function Habit({ habit }: { habit: HabitType }) {
           action: "markComplete",
           habit: {
             ...habit,
-            checkins: [{ id: 1, timestamp: new Date(), habitId: habit.id }],
+            checkins: [{ id: 1, timestamp: date, habitId: habit.id }],
           },
         })
       })
 
       try {
-        // TODO: change date
-        await checkinHabit(habit.id, new Date())
+        await checkinHabit(habit.id, date)
       } catch (error) {
         toast({
           variant: "destructive",
@@ -50,8 +49,7 @@ export default function Habit({ habit }: { habit: HabitType }) {
       })
 
       try {
-        // TODO: change date
-        await uncheckHabit(habit.id, new Date())
+        await uncheckHabit(habit.id, date)
       } catch (error) {
         toast({
           variant: "destructive",

@@ -5,7 +5,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { HiOutlineDotsVertical } from "react-icons/hi"
-import { FiCheck } from "react-icons/fi"
+import { FiCheck, FiEdit3 } from "react-icons/fi"
 import { CiUndo } from "react-icons/ci"
 
 type HabitMenuProps = {
@@ -39,6 +39,13 @@ export default function HabitMenu({
               <span className="ml-2">Mark as complete</span>
             </button>
           )}
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <>
+            <FiEdit3 />
+            {/* TODO: Open edit habit modal */}
+            <span className="ml-2">Edit</span>
+          </>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

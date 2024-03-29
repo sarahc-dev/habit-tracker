@@ -2,8 +2,8 @@ import React from "react"
 import "@testing-library/jest-dom"
 import { render, fireEvent, screen, waitFor } from "@testing-library/react"
 import AddHabitForm from "./AddHabitForm"
-import HabitsContextProvider from "@/contexts/HabitsContext"
-import { HabitType } from "@/lib/types"
+import HabitsContextProvider from "../../contexts/HabitsContext"
+import { HabitType } from "../../lib/types"
 
 const mockHabits: HabitType[] = []
 
@@ -20,7 +20,7 @@ jest.mock("react", () => ({
 describe("<AddHabitForm />", () => {
   it("displays correct error messages if nothing submitted", async () => {
     render(
-      <HabitsContextProvider habits={mockHabits} userId={"1"}>
+      <HabitsContextProvider habits={mockHabits} userId={"1"} date={new Date()}>
         <AddHabitForm setOpen={jest.fn()} />
       </HabitsContextProvider>
     )
@@ -37,7 +37,7 @@ describe("<AddHabitForm />", () => {
   it("closes the modal", async () => {
     const mockSetOpen = jest.fn()
     render(
-      <HabitsContextProvider habits={mockHabits} userId={"1"}>
+      <HabitsContextProvider habits={mockHabits} userId={"1"} date={new Date()}>
         <AddHabitForm setOpen={mockSetOpen} />
       </HabitsContextProvider>
     )

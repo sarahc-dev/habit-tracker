@@ -7,6 +7,7 @@ type HabitsContextType = {
   optimisticHabits: HabitType[]
   setOptimisticHabits: (action: { action: string; habit: HabitType }) => void
   userId: string
+  date: Date
 }
 
 export const HabitsContext = createContext<HabitsContextType | undefined>(
@@ -17,10 +18,12 @@ export default function HabitsContextProvider({
   children,
   habits,
   userId,
+  date,
 }: {
   children: React.ReactNode
   habits: HabitType[]
   userId: string
+  date: Date
 }) {
   const [optimisticHabits, setOptimisticHabits] = useOptimistic(
     habits,
@@ -40,7 +43,7 @@ export default function HabitsContextProvider({
 
   return (
     <HabitsContext.Provider
-      value={{ optimisticHabits, setOptimisticHabits, userId }}
+      value={{ optimisticHabits, setOptimisticHabits, userId, date }}
     >
       {children}
     </HabitsContext.Provider>

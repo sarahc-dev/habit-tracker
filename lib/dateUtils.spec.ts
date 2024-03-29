@@ -1,4 +1,9 @@
-import { getRelativeDate, getDateString } from "./dateUtils"
+import {
+  getRelativeDate,
+  getDateString,
+  getNextDate,
+  getPreviousDate,
+} from "./dateUtils"
 
 xdescribe("getRelativeDate", () => {
   it("returns 'today' if current date", () => {
@@ -22,4 +27,14 @@ describe("getDateString", () => {
     const result = getDateString(date)
     expect(result).toBe("10 November 2024")
   })
+})
+
+describe("returns tomorrows date", () => {
+  const result = getNextDate("2024-11-10")
+  expect(result).toBe("2024-11-11")
+})
+
+describe("returns yesterdays date", () => {
+  const result = getPreviousDate("2024-11-10")
+  expect(result).toBe("2024-11-09")
 })

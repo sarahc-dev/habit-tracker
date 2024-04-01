@@ -16,8 +16,7 @@ import { useHabitsContext } from "@/contexts/HabitsContext"
 import { AddHabitSchema } from "@/lib/schemas"
 import { addHabit } from "@/actions/add-habit"
 import { useToast } from "@/components/ui/use-toast"
-
-type SetOpenType = React.Dispatch<React.SetStateAction<boolean>>
+import { SetOpenType } from "@/lib/types"
 
 export default function AddHabitForm({ setOpen }: { setOpen: SetOpenType }) {
   const { setOptimisticHabits, userId } = useHabitsContext()

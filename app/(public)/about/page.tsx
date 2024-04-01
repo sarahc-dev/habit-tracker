@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="flex-1 px-16">
+    <main className="flex-1 px-6 md:px-16">
       <h1 className="my-3 text-2xl font-bold uppercase">About Page</h1>
       <p>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque

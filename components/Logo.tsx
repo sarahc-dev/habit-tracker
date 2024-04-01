@@ -1,12 +1,15 @@
 export default function Logo() {
   return (
-    <div className="flex items-center text-lg" aria-label="Go to Home page">
+    <div
+      className="flex items-center text-lg transition-all md:hover:scale-110"
+      aria-label="Go to Home page"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="1em"
-        height="1em"
+        width="1.5em"
+        height="1.5em"
         viewBox="0 0 24 24"
-        className="text-accent shrink-0"
+        className="shrink-0 text-primary"
       >
         <path
           fill="currentColor"

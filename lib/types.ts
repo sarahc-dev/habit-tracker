@@ -12,3 +12,5 @@ export interface HabitType {
 export interface OptimisticHabitType extends HabitType {
   checkins: CheckinType[]
 }
+
+export type SetOpenType = React.Dispatch<React.SetStateAction<boolean>>

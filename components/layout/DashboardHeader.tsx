@@ -4,7 +4,7 @@ import CalendarPicker from "../dashboard/CalendarPicker"
 
 export default function DashboardHeader() {
   return (
-    <header className="flex items-center justify-between px-16 py-6">
+    <header className="flex items-center justify-between px-6 md:px-16">
       <form
         action={async () => {
           "use server"

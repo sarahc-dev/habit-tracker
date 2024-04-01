@@ -1,14 +1,27 @@
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+
 export default function Home() {
   return (
-    <main className="flex-1 px-16">
-      <h1 className="mt-10 text-center text-5xl font-bold uppercase">
+    <main className="flex flex-1 flex-col items-center px-6 text-center md:px-16">
+      <h1 className="mt-10 text-5xl font-bold uppercase">
         Improve your habits
         <br />
-        <span className="decoration-accent underline underline-offset-4">
+        <span className="underline decoration-primary underline-offset-4">
           one day
         </span>{" "}
         at a time.
       </h1>
+      <p className="my-6 max-w-xl">
+        Unlock your potential with habit tracking and reach your goals. Set
+        habits, monitor your progress, and stay committed every step of the way.
+      </p>
+      <Link
+        href="/signup"
+        className="rounded-md bg-foreground px-4 py-2 text-white shadow transition-all hover:bg-primary/90"
+      >
+        Try Habit Tracker
+      </Link>
     </main>
   )
 }

@@ -1,17 +1,14 @@
 import Link from "next/link"
 import Logo from "../Logo"
+import Nav from "./Nav"
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between px-16 py-6">
+    <header className="flex items-center justify-between p-6 md:px-16">
       <Link href="/">
         <Logo />
       </Link>
-      <nav className="space-x-3">
-        <Link href="/about">About</Link>
-        <Link href="/login">Login</Link>
-        <Link href="/signup">Signup</Link>
-      </nav>
+      <Nav />
     </header>
   )
 }

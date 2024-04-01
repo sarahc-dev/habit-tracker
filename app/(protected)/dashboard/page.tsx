@@ -27,7 +27,7 @@ export default async function DashboardPage({
 
   return (
     <HabitsContextProvider habits={data} userId={session?.user.id} date={date}>
-      <main className="flex flex-1 gap-6 px-16">
+      <main className="flex flex-1 gap-6 px-6 md:px-16">
         <HabitContainer date={date} />
 
         <DayStats />

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function SignupPage() {
   return (
-    <main className="flex flex-1 items-center justify-center px-16">
+    <main className="flex flex-1 items-center justify-center px-6 md:px-16">
       <Card className="max-w-md">
         <CardHeader>
           <h1 className="text-xl font-bold">Sign Up</h1>
@@ -27,7 +27,10 @@ export default function SignupPage() {
           <SignupForm />
           <div className="mt-3 text-center text-sm">
             Already have an account?
-            <Link href="/login" className="text-accent ml-1">
+            <Link
+              href="/login"
+              className="ml-1 inline-block underline decoration-primary underline-offset-4 transition-all md:hover:ml-2 md:hover:scale-110"
+            >
               Login
             </Link>
           </div>

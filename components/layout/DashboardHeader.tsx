@@ -1,3 +1,4 @@
+import { Suspense } from "react"
 import { signOut } from "@/auth"
 import CalendarPicker from "../dashboard/CalendarPicker"
 
@@ -14,7 +15,9 @@ export default function DashboardHeader() {
           Sign Out
         </button>
       </form>
-      <CalendarPicker />
+      <Suspense>
+        <CalendarPicker />
+      </Suspense>
     </header>
   )
 }

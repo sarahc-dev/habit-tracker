@@ -1,32 +1,56 @@
 import {
-  getRelativeDate,
   getDateString,
+  getLocaleDateISOFormat,
   getNextDate,
   getPreviousDate,
+  getRelativeDate,
+  calculateMillisecondsToMidnight,
 } from "./dateUtils"
 
 describe("getDateString", () => {
   it("returns the date as a string in the format '1 January 2024'", () => {
-    const date = new Date("2024-01-01")
+    const date = new Date("2024-01-01T00:00:00.000Z")
     const result = getDateString(date)
     expect(result).toBe("1 January 2024")
   })
+})
 
-  it("returns the date as a string in the format '10 November 2024'", () => {
-    const date = new Date("2024-11-10")
-    const result = getDateString(date)
-    expect(result).toBe("10 November 2024")
+describe("getLocaleDateISOFormat", () => {
+  it("returns date in YYYY-MM-DD format when no time", () => {
+    const date = new Date("2024-01-01T00:00:00.000Z")
+    const result = getLocaleDateISOFormat(date)
+    expect(result).toBe("2024-01-01")
+  })
+
+  it("returns date in YYYY-MM-DD format", () => {
+    const date = new Date("2024-06-29T10:44:47.438Z")
+    const result = getLocaleDateISOFormat(date)
+    expect(result).toBe("2024-06-29")
   })
 })
 
-describe("returns tomorrows date", () => {
-  const result = getNextDate("2024-11-10")
-  expect(result).toBe("2024-11-11")
+describe("getNextDate", () => {
+  it("returns tomorrows date", () => {
+    const result = getNextDate(new Date("2024-01-01T00:00:00.000Z"))
+    expect(result).toBe("2024-01-02")
+  })
+
+  it("returns tomorrows date if end of month", () => {
+    const result = getNextDate(new Date("2024-11-30T00:00:00.000Z"))
+    expect(result).toBe("2024-12-01")
+  })
 })
 
-describe("returns yesterdays date", () => {
-  const result = getPreviousDate("2024-11-10")
-  expect(result).toBe("2024-11-09")
+describe("getPreviousDate", () => {
+  it("returns yesterdays date", () => {
+    const result = getPreviousDate(new Date("2024-11-30T00:00:00.000Z"))
+    expect(result).toBe("2024-11-29")
+  })
+
+  it("returns yesterdays date if beginning of month", () => {
+    const result = getPreviousDate(new Date("2024-01-01T00:00:00.000Z"))
+    expect(result).toBe("2023-12-31")
+  })
 })
 
 describe("getRelativeDate", () => {
@@ -72,5 +96,19 @@ describe("getRelativeDate", () => {
     })
     const result = getRelativeDate(testDate)
     expect(result).toBe(testString)
+  })
+})
+
+describe("calculateMillisecondsToMidnight", () => {
+  it("returns the number of milliseconds to midnight", () => {
+    const testDate = new Date("2024-03-01T22:00:00.000Z")
+    const result = calculateMillisecondsToMidnight(testDate)
+    expect(result).toBe(7200000)
+  })
+
+  it("returns the number of milliseconds to midnight", () => {
+    const testDate = new Date("2024-03-01T17:12:33.000Z")
+    const result = calculateMillisecondsToMidnight(testDate)
+    expect(result).toBe(24447000)
   })
 })

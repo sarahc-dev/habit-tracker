@@ -4,17 +4,34 @@ import db from "@/db"
 import { revalidatePath } from "next/cache"
 import { auth } from "@/auth"
 import { checkins } from "@/db/schemas/habits"
-import { sql } from "drizzle-orm"
+import { and, eq, gte, lt } from "drizzle-orm"
+import { getLocaleDateISOFormat } from "@/lib/dateUtils"
 
 export async function uncheckHabit(habitId: number, date: Date) {
   const session = await auth()
   if (!session?.user)
     throw new Error("You must be signed in to perform this action")
 
+  let timezoneOffset = date.getTimezoneOffset()
+
+  const start = new Date(getLocaleDateISOFormat(date))
+  start.setMinutes(start.getMinutes() + timezoneOffset)
+
+  const finish = new Date(getLocaleDateISOFormat(date))
+  finish.setMinutes(finish.getMinutes() + 1440)
+  timezoneOffset = finish.getTimezoneOffset()
+  finish.setMinutes(finish.getMinutes() + timezoneOffset)
+
   try {
-    await db.execute(
-      sql`DELETE FROM ${checkins} where extract(day from ${checkins.timestamp}) = ${date.getDate()} and ${checkins.habitId} = ${habitId}`
-    )
+    await db
+      .delete(checkins)
+      .where(
+        and(
+          eq(checkins.habitId, habitId),
+          gte(checkins.timestamp, start),
+          lt(checkins.timestamp, finish)
+        )
+      )
   } catch (error) {
     console.error(error)
     revalidatePath("/dashboard")

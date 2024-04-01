@@ -7,6 +7,7 @@ import { checkinHabit } from "@/actions/checkin-habit"
 import { uncheckHabit } from "@/actions/uncheck-habit"
 import HabitMenu from "./HabitMenu"
 import { useToast } from "@/components/ui/use-toast"
+import { getLocaleDateISOFormat } from "@/lib/dateUtils"
 
 export default function Habit({ habit }: { habit: OptimisticHabitType }) {
   const { setOptimisticHabits, date } = useHabitsContext()
@@ -21,13 +22,16 @@ export default function Habit({ habit }: { habit: OptimisticHabitType }) {
           action: "markComplete",
           habit: {
             ...habit,
-            checkins: [{ id: 1, timestamp: date, habitId: habit.id }],
+            checkins: [{ id: 1, timestamp: new Date(), habitId: habit.id }],
           },
         })
       })
 
       try {
-        await checkinHabit(habit.id, date)
+        const isToday =
+          getLocaleDateISOFormat(date) === getLocaleDateISOFormat(new Date())
+        // checks in with timestamp if today
+        await checkinHabit(habit.id, isToday ? new Date() : date)
       } catch (error) {
         toast({
           variant: "destructive",

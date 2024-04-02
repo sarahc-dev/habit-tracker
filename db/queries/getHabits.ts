@@ -17,6 +17,7 @@ export async function getHabits(id: string, date: Date) {
   finish.setMinutes(finish.getMinutes() + timezoneOffset)
 
   return db.query.habits.findMany({
+    orderBy: (habits, { asc }) => [asc(habits.id)],
     where: (habits, { eq }) => eq(habits.userId, id),
     with: {
       checkins: {

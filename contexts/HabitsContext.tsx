@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext, useContext, useOptimistic } from "react"
-import { OptimisticHabitType } from "@/utils/types"
+import { OptimisticHabitType } from "@/lib/types"
 
 type HabitsContextType = {
   optimisticHabits: OptimisticHabitType[]
@@ -41,7 +41,8 @@ export default function HabitsContextProvider({
           return state.map((h) =>
             h.id === habit.id ? { ...h, checkins: [] } : h
           )
-
+        case "deleteHabit":
+          return state.filter((h) => h.id !== habit.id)
         default:
           return [...state, habit]
       }

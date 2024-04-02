@@ -9,7 +9,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "../ui/dropdown-menu"
-import { getGreeting } from "@/utils/dateUtils"
+import { getGreeting } from "@/lib/dateUtils"
 import Avatar from "../dashboard/Avatar"
 
 type DashboardNavProps = {

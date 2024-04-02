@@ -5,12 +5,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Dialog, DialogTrigger } from "@/components/ui/dialog"
+import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog"
 import { HiOutlineDotsVertical } from "react-icons/hi"
 import { FiCheck } from "react-icons/fi"
-import { CiUndo, CiEdit } from "react-icons/ci"
+import { CiUndo, CiEdit, CiTrash } from "react-icons/ci"
 import { GoGraph } from "react-icons/go"
-import EditHabitDialogContent from "./EditHabitDialog"
-import { OptimisticHabitType } from "@/utils/types"
+import EditHabitDialog from "./EditHabitDialog"
+import DeleteHabitDialog from "./DeleteHabitDialog"
+import { OptimisticHabitType } from "@/lib/types"
 
 type HabitMenuProps = {
   checked: boolean
@@ -27,42 +29,50 @@ export default function HabitMenu({
 }: HabitMenuProps) {
   return (
     <Dialog>
-      <DropdownMenu>
-        <DropdownMenuTrigger
-          className={`border-l p-4 pl-4 ${checked && "border-white border-opacity-30 text-white"}`}
-        >
-          <HiOutlineDotsVertical />
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="ml-10">
-          <DropdownMenuItem asChild>
-            {checked ? (
-              <button onClick={handleUncheck}>
-                <CiUndo />
-                <span className="ml-2">Undo completed</span>
-              </button>
-            ) : (
-              <button onClick={handleCheckin}>
-                <FiCheck />
-                <span className="ml-2">Mark as complete</span>
-              </button>
-            )}
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <DialogTrigger className="flex items-center">
-              <CiEdit />
-              <span className="ml-2">Edit</span>
-            </DialogTrigger>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
+      <AlertDialog>
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            className={`border-l p-4 pl-4 ${checked && "border-white border-opacity-30 text-white"}`}
+          >
+            <HiOutlineDotsVertical />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="ml-10">
+            <DropdownMenuItem asChild>
+              {checked ? (
+                <button onClick={handleUncheck}>
+                  <CiUndo />
+                  <span className="ml-2">Undo completed</span>
+                </button>
+              ) : (
+                <button onClick={handleCheckin}>
+                  <FiCheck />
+                  <span className="ml-2">Mark as complete</span>
+                </button>
+              )}
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <DialogTrigger className="flex items-center">
+                <CiEdit />
+                <span className="ml-2">Edit</span>
+              </DialogTrigger>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <AlertDialogTrigger className="flex items-center">
+                <CiTrash />
+                <span className="ml-2">Delete</span>
+              </AlertDialogTrigger>
+            </DropdownMenuItem>
+            {/* <DropdownMenuItem>
             <>
               <GoGraph />
-              {/* TODO: Show habit progress */}
               <span className="ml-2">View progress</span>
             </>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-      <EditHabitDialogContent habit={habit} />
+          </DropdownMenuItem> */}
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <EditHabitDialog habit={habit} />
+        <DeleteHabitDialog habit={habit} />
+      </AlertDialog>
     </Dialog>
   )
 }

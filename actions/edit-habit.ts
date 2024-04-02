@@ -3,7 +3,7 @@
 import * as z from "zod"
 import db, { habits } from "@/db"
 import { revalidatePath } from "next/cache"
-import { AddHabitSchema } from "@/utils/schemas"
+import { AddHabitSchema } from "@/lib/schemas"
 import { auth } from "@/auth"
 import { eq } from "drizzle-orm"
 

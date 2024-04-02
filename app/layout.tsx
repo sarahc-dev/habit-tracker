@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Nunito_Sans } from "next/font/google"
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import { cn } from "@/utils/utils"
+import { cn } from "@/lib/utils"
 import "./globals.css"
 
 const fontSans = Nunito_Sans({

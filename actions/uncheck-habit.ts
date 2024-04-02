@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache"
 import { auth } from "@/auth"
 import { checkins } from "@/db/schemas/habits"
 import { and, eq, gte, lt } from "drizzle-orm"
-import { getLocaleDateISOFormat } from "@/utils/dateUtils"
+import { getLocaleDateISOFormat } from "@/lib/dateUtils"
 
 export async function uncheckHabit(habitId: number, date: Date) {
   const session = await auth()

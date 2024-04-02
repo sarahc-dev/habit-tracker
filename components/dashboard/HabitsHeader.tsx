@@ -1,10 +1,6 @@
 import Link from "next/link"
 import { Suspense } from "react"
-import {
-  getNextDate,
-  getPreviousDate,
-  getRelativeDate,
-} from "@/utils/dateUtils"
+import { getNextDate, getPreviousDate, getRelativeDate } from "@/lib/dateUtils"
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi"
 import AddHabit from "./AddHabit"
 import CalendarPicker from "../dashboard/CalendarPicker"

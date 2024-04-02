@@ -1,5 +1,5 @@
 import db from ".."
-import { getLocaleDateISOFormat } from "@/utils/dateUtils"
+import { getLocaleDateISOFormat } from "@/lib/dateUtils"
 
 export async function getHabits(id: string, date: Date) {
   // Get habits for localised 'day'

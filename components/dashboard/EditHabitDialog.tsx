@@ -19,12 +19,12 @@ import {
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { useHabitsContext } from "@/contexts/HabitsContext"
-import { AddHabitSchema } from "@/utils/schemas"
+import { AddHabitSchema } from "@/lib/schemas"
 import { editHabit } from "@/actions/edit-habit"
 import { useToast } from "@/components/ui/use-toast"
-import { OptimisticHabitType } from "@/utils/types"
+import { OptimisticHabitType } from "@/lib/types"
 
-export default function EditHabitDialogContent({
+export default function EditHabitDialog({
   habit,
 }: {
   habit: OptimisticHabitType

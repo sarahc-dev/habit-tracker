@@ -2,7 +2,7 @@
 
 import { AuthError } from "next-auth"
 import { z } from "zod"
-import { LoginSchema } from "@/utils/schemas"
+import { LoginSchema } from "@/lib/schemas"
 import { signIn } from "@/auth"
 
 export async function loginUser(formData: z.infer<typeof LoginSchema>) {

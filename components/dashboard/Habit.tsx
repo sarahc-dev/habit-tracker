@@ -1,13 +1,13 @@
 import { startTransition } from "react"
 import { useHabitsContext } from "@/contexts/HabitsContext"
-import { OptimisticHabitType } from "@/utils/types"
+import { OptimisticHabitType } from "@/lib/types"
 import { Card, CardContent } from "../ui/card"
 import { FiCheckCircle, FiCircle } from "react-icons/fi"
 import { checkinHabit } from "@/actions/checkin-habit"
 import { uncheckHabit } from "@/actions/uncheck-habit"
 import HabitMenu from "./HabitMenu"
 import { useToast } from "@/components/ui/use-toast"
-import { getLocaleDateISOFormat } from "@/utils/dateUtils"
+import { getLocaleDateISOFormat } from "@/lib/dateUtils"
 
 export default function Habit({ habit }: { habit: OptimisticHabitType }) {
   const { setOptimisticHabits, date } = useHabitsContext()

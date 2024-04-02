@@ -2,7 +2,7 @@
 
 import { z } from "zod"
 import bcrypt from "bcryptjs"
-import { SignupSchema } from "@/utils/schemas"
+import { SignupSchema } from "@/lib/schemas"
 import db, { getUserByEmail, users } from "@/db"
 
 export async function signupUser(formData: z.infer<typeof SignupSchema>) {

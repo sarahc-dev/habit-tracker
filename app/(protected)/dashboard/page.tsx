@@ -1,7 +1,7 @@
 import HabitsContextProvider from "@/contexts/HabitsContext"
 import { auth } from "@/auth"
 import { getHabits } from "@/db/queries/getHabits"
-import { calculateMillisecondsToMidnight } from "@/utils/dateUtils"
+import { calculateMillisecondsToMidnight } from "@/lib/dateUtils"
 import HabitsHeader from "@/components/dashboard/HabitsHeader"
 import HabitsList from "@/components/dashboard/HabitsList"
 import DayStats from "@/components/dashboard/DayStats"

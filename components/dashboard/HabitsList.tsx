@@ -6,7 +6,7 @@ import Habit from "./Habit"
 export default function HabitsList() {
   const { optimisticHabits } = useHabitsContext()
   return (
-    <div className="my-4">
+    <div className="lg:w-1/2">
       {optimisticHabits.length === 0 ? (
         <div>You have not added any habits yet.</div>
       ) : (

@@ -4,7 +4,7 @@ import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { LoginSchema } from "@/lib/schemas"
+import { LoginSchema } from "@/utils/schemas"
 import { loginUser } from "@/actions/login"
 import {
   Form,

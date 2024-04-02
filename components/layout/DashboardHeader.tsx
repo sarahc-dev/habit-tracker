@@ -1,23 +1,15 @@
-import { Suspense } from "react"
-import { signOut } from "@/auth"
-import CalendarPicker from "../dashboard/CalendarPicker"
+import Logo from "../Logo"
+import DashboardNav from "./DashboardNav"
+import { auth } from "@/auth"
 
-export default function DashboardHeader() {
+export default async function DashboardHeader() {
+  const session = await auth()
+  if (!session?.user) return null
+
   return (
-    <header className="flex items-center justify-between px-6 md:px-16">
-      <form
-        action={async () => {
-          "use server"
-          await signOut()
-        }}
-      >
-        <button type="submit" data-testid="signout">
-          Sign Out
-        </button>
-      </form>
-      <Suspense>
-        <CalendarPicker />
-      </Suspense>
+    <header className="fixed flex h-16 w-full items-center rounded-b-xl bg-card px-6 py-4 shadow max-md:justify-between md:h-[calc(100vh-3rem)] md:w-56 md:flex-col md:rounded-xl md:p-6">
+      <Logo />
+      <DashboardNav name={session.user.name} avatar={session.user.image} />
     </header>
   )
 }

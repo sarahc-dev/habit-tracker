@@ -9,9 +9,11 @@ export default function ProgressRound() {
   const habitsCompleted = optimisticHabits.filter(
     (habit) => habit.checkins.length > 0
   ).length
-  const completed = Math.round((habitsCompleted / totalHabits) * 100)
+  const completed = totalHabits
+    ? Math.round((habitsCompleted / totalHabits) * 100)
+    : 0
   return (
-    <div className="relative flex h-[160px] w-[160px] items-center justify-center">
+    <div className="relative mx-auto flex h-[160px] w-[160px] items-center justify-center">
       <div className="flex h-[160px] w-[160px] items-center justify-center rounded-full border shadow">
         <div className="flex h-[120px] w-[120px] items-center justify-center rounded-full border text-2xl font-bold shadow-inner">
           {completed}%

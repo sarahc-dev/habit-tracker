@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation"
 import { Popover, PopoverTrigger, PopoverContent } from "../ui/popover"
 import { Calendar } from "../ui/calendar"
 import { FiCalendar } from "react-icons/fi"
-import { getLocaleDateISOFormat } from "@/lib/dateUtils"
+import { getLocaleDateISOFormat } from "@/utils/dateUtils"
 
 export default function CalendarPicker() {
   const [open, setOpen] = useState(false)
@@ -16,7 +16,7 @@ export default function CalendarPicker() {
     <Popover open={open} onOpenChange={() => setOpen(!open)}>
       <PopoverTrigger asChild>
         <button>
-          <FiCalendar />
+          <FiCalendar size="1.4em" />
           <span className="sr-only">Calendar</span>
         </button>
       </PopoverTrigger>

@@ -12,6 +12,12 @@ export default function ProgressBarRound({
       height="160px"
       className="absolute left-0 top-0"
     >
+      {/* <defs>
+        <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#4948CF" />
+          <stop offset="100%" stopColor="#85FFBD" />
+        </linearGradient>
+      </defs> */}
       <g transform="rotate(-90 80 80)">
         <circle
           cx="80"
@@ -23,17 +29,10 @@ export default function ProgressBarRound({
           strokeDasharray="440"
           strokeDashoffset={convertCompleted}
           strokeWidth="20"
+          // stroke="url(#linear)"
           fill="none"
-          className="stroke-accent transition-all"
-        >
-          {/* <animate
-          attributeName="stroke-dashoffset"
-          from="440" // Set it equal to strokeDasharray
-          to="0" // To fully reveal the circle
-          dur="5s" // Duration of the animation
-          fill="freeze" // Maintain the final state of the animation
-        /> */}
-        </circle>
+          className="stroke-primary transition-all"
+        ></circle>
       </g>
     </svg>
   )

@@ -51,3 +51,14 @@ export function calculateMillisecondsToMidnight(date: Date): number {
   )
   return midnight.getTime() - date.getTime()
 }
+
+export function getGreeting(date: Date): string {
+  const hours = date.getHours()
+  if (hours < 12) {
+    return "Good morning"
+  } else if (hours >= 17) {
+    return "Good evening"
+  } else {
+    return "Good afternoon"
+  }
+}

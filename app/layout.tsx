@@ -1,10 +1,10 @@
 import type { Metadata } from "next"
-import { Quicksand } from "next/font/google"
+import { Nunito_Sans } from "next/font/google"
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import { cn } from "@/lib/utils"
+import { cn } from "@/utils/utils"
 import "./globals.css"
 
-const fontSans = Quicksand({
+const fontSans = Nunito_Sans({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",

@@ -13,7 +13,7 @@ export default function Home() {
         at a time.
       </h1>
       <p className="my-6 max-w-xl">
-        Unlock your potential with habit tracking and reach your goals. Set
+        Unlock your potential by tracking your habits to reach your goals. Set
         habits, monitor your progress, and stay committed every step of the way.
       </p>
       <Link

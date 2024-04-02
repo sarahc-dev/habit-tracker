@@ -16,7 +16,7 @@ export default function SocialLogin({ isSignup = false }: SocialLoginProps) {
           await signIn("google")
         }}
       >
-        <Button type="submit" variant="outline" className="w-full bg-white">
+        <Button type="submit" variant="outline" className="w-full">
           <FcGoogle className="mr-2 h-4 w-4" />
           {`${isSignup ? "Continue" : "Log in"} with Google`}
         </Button>
@@ -27,7 +27,7 @@ export default function SocialLogin({ isSignup = false }: SocialLoginProps) {
           await signIn("github")
         }}
       >
-        <Button type="submit" variant="outline" className="w-full bg-white">
+        <Button type="submit" variant="outline" className="w-full">
           <GrGithub className="mr-2 h-4 w-4" />
           {`${isSignup ? "Continue" : "Log in"} with GitHub`}
         </Button>

@@ -5,6 +5,7 @@ import {
   getPreviousDate,
   getRelativeDate,
   calculateMillisecondsToMidnight,
+  getGreeting,
 } from "./dateUtils"
 
 describe("getDateString", () => {
@@ -110,5 +111,25 @@ describe("calculateMillisecondsToMidnight", () => {
     const testDate = new Date("2024-03-01T17:12:33.000Z")
     const result = calculateMillisecondsToMidnight(testDate)
     expect(result).toBe(24447000)
+  })
+})
+
+describe("getGreeting", () => {
+  it("returns greeting when morning", () => {
+    const testDate = new Date("2024-03-01T10:12:33.000Z")
+    const result = getGreeting(testDate)
+    expect(result).toBe("Good morning")
+  })
+
+  it("returns greeting when afternoon", () => {
+    const testDate = new Date("2024-03-01T15:12:33.000Z")
+    const result = getGreeting(testDate)
+    expect(result).toBe("Good afternoon")
+  })
+
+  it("returns greeting when evening", () => {
+    const testDate = new Date("2024-03-01T19:12:33.000Z")
+    const result = getGreeting(testDate)
+    expect(result).toBe("Good evening")
   })
 })

@@ -14,8 +14,10 @@ export default async function Dashboardlayout({
 }) {
   return (
     <>
-      <DashboardHeader />
-      {children}
+      <div className="flex flex-1 flex-col md:flex-row md:p-6">
+        <DashboardHeader />
+        {children}
+      </div>
       <Footer />
       <Toaster />
     </>

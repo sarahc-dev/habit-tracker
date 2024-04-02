@@ -1,7 +1,7 @@
-export default function Logo() {
+export default function Logo({ link = false }: { link?: boolean }) {
   return (
     <div
-      className="flex items-center text-lg transition-all md:hover:scale-110"
+      className={`flex items-center text-lg ${link && "transition-all md:hover:scale-110"}`}
       aria-label="Go to Home page"
     >
       <svg

@@ -1,8 +1,9 @@
 import HabitsContextProvider from "@/contexts/HabitsContext"
 import { auth } from "@/auth"
 import { getHabits } from "@/db/queries/getHabits"
-import { calculateMillisecondsToMidnight } from "@/lib/dateUtils"
-import HabitContainer from "@/components/dashboard/HabitContainer"
+import { calculateMillisecondsToMidnight } from "@/utils/dateUtils"
+import HabitsHeader from "@/components/dashboard/HabitsHeader"
+import HabitsList from "@/components/dashboard/HabitsList"
 import DayStats from "@/components/dashboard/DayStats"
 import RefreshPage from "@/components/RefreshPage"
 
@@ -27,10 +28,12 @@ export default async function DashboardPage({
 
   return (
     <HabitsContextProvider habits={data} userId={session?.user.id} date={date}>
-      <main className="flex flex-1 gap-6 px-6 md:px-16">
-        <HabitContainer date={date} />
-
-        <DayStats />
+      <main className="mt-16 flex-1 px-6 md:ml-56 md:mt-0 md:pr-10 xl:pr-16">
+        <HabitsHeader date={date} />
+        <div className="flex flex-col gap-6 lg:flex-row">
+          <HabitsList />
+          <DayStats />
+        </div>
       </main>
       <RefreshPage milliseconds={millisecondsToMidnight} />
     </HabitsContextProvider>

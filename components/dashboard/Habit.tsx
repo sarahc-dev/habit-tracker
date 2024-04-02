@@ -1,13 +1,13 @@
 import { startTransition } from "react"
 import { useHabitsContext } from "@/contexts/HabitsContext"
-import { OptimisticHabitType } from "@/lib/types"
+import { OptimisticHabitType } from "@/utils/types"
 import { Card, CardContent } from "../ui/card"
 import { FiCheckCircle, FiCircle } from "react-icons/fi"
 import { checkinHabit } from "@/actions/checkin-habit"
 import { uncheckHabit } from "@/actions/uncheck-habit"
 import HabitMenu from "./HabitMenu"
 import { useToast } from "@/components/ui/use-toast"
-import { getLocaleDateISOFormat } from "@/lib/dateUtils"
+import { getLocaleDateISOFormat } from "@/utils/dateUtils"
 
 export default function Habit({ habit }: { habit: OptimisticHabitType }) {
   const { setOptimisticHabits, date } = useHabitsContext()
@@ -68,7 +68,7 @@ export default function Habit({ habit }: { habit: OptimisticHabitType }) {
   return (
     <Card
       role="listitem"
-      className={`${checked && "bg-secondary"}`}
+      className={`${checked && "bg-gradient-to-l from-primary to-secondary text-secondary-foreground"}`}
       data-testid={habit.id}
     >
       <CardContent className="flex items-center p-0">

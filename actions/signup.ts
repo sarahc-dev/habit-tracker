@@ -2,7 +2,7 @@
 
 import { z } from "zod"
 import bcrypt from "bcryptjs"
-import { SignupSchema } from "@/lib/schemas"
+import { SignupSchema } from "@/utils/schemas"
 import db, { getUserByEmail, users } from "@/db"
 
 export async function signupUser(formData: z.infer<typeof SignupSchema>) {
@@ -15,13 +15,15 @@ export async function signupUser(formData: z.infer<typeof SignupSchema>) {
   const { email, password } = validatedFields.data
   const hashedPassword = await bcrypt.hash(password, 10)
 
-  const existingUser = await getUserByEmail(email)
+  const existingUser = await getUserByEmail(email.toLowerCase())
   if (existingUser.length > 0) {
     return { error: "Email already in use" }
   }
 
   try {
-    await db.insert(users).values({ email: email, password: hashedPassword })
+    await db
+      .insert(users)
+      .values({ email: email.toLowerCase(), password: hashedPassword })
     return { success: "Successfully signed up." }
   } catch (error) {
     console.error(error)

@@ -13,10 +13,10 @@ import {
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { useHabitsContext } from "@/contexts/HabitsContext"
-import { AddHabitSchema } from "@/lib/schemas"
+import { AddHabitSchema } from "@/utils/schemas"
 import { addHabit } from "@/actions/add-habit"
 import { useToast } from "@/components/ui/use-toast"
-import { SetOpenType } from "@/lib/types"
+import { SetOpenType } from "@/utils/types"
 
 export default function AddHabitForm({ setOpen }: { setOpen: SetOpenType }) {
   const { setOptimisticHabits, userId } = useHabitsContext()

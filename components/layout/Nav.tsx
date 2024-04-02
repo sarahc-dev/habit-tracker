@@ -49,7 +49,7 @@ export default function Nav() {
     </nav>
   ) : (
     <Drawer direction="right">
-      <DrawerTrigger>
+      <DrawerTrigger aria-label="open menu" data-testid="hamburger-menu">
         <HamburgerMenuIcon height="1.5em" width="1.5em" />
       </DrawerTrigger>
       <DrawerContent className="px-6">

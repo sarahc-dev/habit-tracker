@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <header className="flex items-center justify-between p-6 md:px-16">
       <Link href="/">
-        <Logo />
+        <Logo link={true} />
       </Link>
       <Nav />
     </header>

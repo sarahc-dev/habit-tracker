@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext, useContext, useOptimistic } from "react"
-import { OptimisticHabitType } from "@/lib/types"
+import { OptimisticHabitType } from "@/utils/types"
 
 type HabitsContextType = {
   optimisticHabits: OptimisticHabitType[]

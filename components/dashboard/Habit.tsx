@@ -19,7 +19,7 @@ export default function Habit({ habit }: { habit: OptimisticHabitType }) {
     if (!checked) {
       startTransition(() => {
         setOptimisticHabits({
-          action: "markComplete",
+          action: "editHabit",
           habit: {
             ...habit,
             checkins: [{ id: 1, timestamp: new Date(), habitId: habit.id }],
@@ -68,13 +68,13 @@ export default function Habit({ habit }: { habit: OptimisticHabitType }) {
   return (
     <Card
       role="listitem"
-      className={`${checked && "bg-gradient-to-l from-primary to-secondary text-secondary-foreground"}`}
+      className={`${checked && "bg-gradient-to-l from-primary to-accent text-secondary-foreground"}`}
       data-testid={habit.id}
     >
       <CardContent className="flex items-center p-0">
         <button
           onClick={handleCheckin}
-          className="flex grow items-center gap-3 p-4 text-start"
+          className="flex grow items-center gap-3 px-4 text-start"
         >
           {checked ? <FiCheckCircle size="1em" /> : <FiCircle size="1em" />}
           {habit.title}
@@ -83,6 +83,7 @@ export default function Habit({ habit }: { habit: OptimisticHabitType }) {
           checked={checked}
           handleCheckin={handleCheckin}
           handleUncheck={handleUncheck}
+          habit={habit}
         />
       </CardContent>
     </Card>

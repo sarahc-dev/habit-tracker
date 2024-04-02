@@ -35,12 +35,13 @@ export default function HabitsContextProvider({
       { action, habit }: { action: string; habit: OptimisticHabitType }
     ) => {
       switch (action) {
-        case "markComplete":
+        case "editHabit":
           return state.map((h) => (h.id === habit.id ? habit : h))
         case "undoComplete":
           return state.map((h) =>
             h.id === habit.id ? { ...h, checkins: [] } : h
           )
+
         default:
           return [...state, habit]
       }

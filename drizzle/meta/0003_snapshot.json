@@ -1,6 +1,6 @@
 {
-  "id": "dfb0f7ef-7f11-4f72-a068-5a43ad15f5e0",
-  "prevId": "67cc56b3-0d3d-4eef-be91-42fa241f5606",
+  "id": "b89dc049-9b49-4f6b-8c98-824977beec9e",
+  "prevId": "fd79aae2-0d60-4205-bca8-6f64979d6506",
   "version": "5",
   "dialect": "pg",
   "tables": {
@@ -18,8 +18,7 @@
           "name": "timestamp",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": false,
-          "default": "now()"
+          "notNull": true
         },
         "habitId": {
           "name": "habitId",
@@ -63,15 +62,29 @@
           "primaryKey": false,
           "notNull": true
         },
-        "user_id": {
-          "name": "user_id",
+        "userId": {
+          "name": "userId",
           "type": "text",
           "primaryKey": false,
           "notNull": true
         }
       },
       "indexes": {},
-      "foreignKeys": {},
+      "foreignKeys": {
+        "habits_userId_user_id_fk": {
+          "name": "habits_userId_user_id_fk",
+          "tableFrom": "habits",
+          "tableTo": "user",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },

@@ -15,7 +15,10 @@ export default function ProgressRound() {
   return (
     <div className="relative mx-auto flex h-[160px] w-[160px] items-center justify-center">
       <div className="flex h-[160px] w-[160px] items-center justify-center rounded-full border shadow">
-        <div className="flex h-[120px] w-[120px] items-center justify-center rounded-full border text-2xl font-bold shadow-inner">
+        <div
+          className="flex h-[120px] w-[120px] items-center justify-center rounded-full border text-2xl font-bold shadow-inner"
+          data-testid="progressCompleted"
+        >
           {completed}%
         </div>
       </div>

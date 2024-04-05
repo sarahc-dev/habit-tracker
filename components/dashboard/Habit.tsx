@@ -74,7 +74,8 @@ export default function Habit({ habit }: { habit: OptimisticHabitType }) {
       <CardContent className="flex items-center p-0">
         <button
           onClick={handleCheckin}
-          className="flex grow items-center gap-3 px-4 text-start"
+          className="flex grow items-center gap-3 p-4 text-start"
+          data-testid="buttonCheckin"
         >
           {checked ? <FiCheckCircle size="1em" /> : <FiCircle size="1em" />}
           {habit.title}

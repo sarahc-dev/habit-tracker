@@ -33,13 +33,14 @@ export default function HabitMenu({
         <DropdownMenu>
           <DropdownMenuTrigger
             className={`border-l p-4 pl-4 ${checked && "border-white border-opacity-30 text-white"}`}
+            data-testid="habitMenu"
           >
             <HiOutlineDotsVertical />
           </DropdownMenuTrigger>
           <DropdownMenuContent className="ml-10">
             <DropdownMenuItem asChild>
               {checked ? (
-                <button onClick={handleUncheck}>
+                <button onClick={handleUncheck} data-testid="uncheckHabit">
                   <CiUndo />
                   <span className="ml-2">Undo completed</span>
                 </button>
@@ -51,13 +52,19 @@ export default function HabitMenu({
               )}
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <DialogTrigger className="flex items-center">
+              <DialogTrigger
+                className="flex items-center"
+                data-testid="editHabit"
+              >
                 <CiEdit />
                 <span className="ml-2">Edit</span>
               </DialogTrigger>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <AlertDialogTrigger className="flex items-center">
+              <AlertDialogTrigger
+                className="flex items-center"
+                data-testid="deleteHabit"
+              >
                 <CiTrash />
                 <span className="ml-2">Delete</span>
               </AlertDialogTrigger>

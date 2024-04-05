@@ -10,13 +10,19 @@ export default function HabitsHeader({ date }: { date: Date }) {
   return (
     <div className="my-4 flex justify-between gap-5 md:mt-5">
       <div className="flex items-center gap-4">
-        <Link href={`/dashboard?date=${getPreviousDate(date)}`}>
+        <Link
+          href={`/dashboard?date=${getPreviousDate(date)}`}
+          data-testid="previousDay"
+        >
           <FiArrowLeft />
           <span className="sr-only">Previous day</span>
         </Link>
 
         <div className="font-bold">{relativeDate}</div>
-        <Link href={`/dashboard?date=${getNextDate(date)}`}>
+        <Link
+          href={`/dashboard?date=${getNextDate(date)}`}
+          data-testid="nextDay"
+        >
           <FiArrowRight />
           <span className="sr-only">Next day</span>
         </Link>

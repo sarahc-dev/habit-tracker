@@ -56,6 +56,7 @@ export default function DeleteHabitDialog({
         <AlertDialogAction
           onClick={handleDelete}
           className="bg-destructive hover:bg-destructive/70"
+          data-testid="confirmDeleteHabit"
         >
           Delete
         </AlertDialogAction>

@@ -36,7 +36,7 @@ jobs:
           branch_name: preview/pr-${{ github.event.number }}-${{ steps.branch-name.outputs.current_branch }}
           username: ${{ env.NEON_USERNAME }}
           api_key: ${{ env.NEON_API_KEY }}
-          database: neondb
+          database: habit_tracker
 
       - name: Run Migrations
         run: |

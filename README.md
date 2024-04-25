@@ -2,5 +2,15 @@
 
 This is an app to track your habits.
 
-Date - could set in context so would be client side only.
-Better to set as URL param? Can use back button, refresh page
+Built with:
+
+- Next.js 14 / React
+- TypeScript
+- Tailwind CSS
+- Shadcn/ui
+- Neon (Postgres database)
+- Drizzle ORM
+- Cypress
+- Jest/Testing Library
+- Github Actions
+- Vercel

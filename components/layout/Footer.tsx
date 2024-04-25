@@ -6,7 +6,7 @@ export default function Footer() {
       <p>
         Project by{" "}
         <Link
-          href=""
+          href="https://github.com/sarahc-dev"
           className="inline-block underline decoration-primary underline-offset-4"
         >
           Sarah

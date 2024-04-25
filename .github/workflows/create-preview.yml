@@ -43,7 +43,6 @@ jobs:
           touch .env
 
           echo DATABASE_URL=${{ steps.create-branch.outputs.db_url_with_pooler }}?sslmode=require >> .env
-          echo NEXT_PUBLIC_DATABASE_URL=${{ steps.create-branch.outputs.db_url_with_pooler }}?sslmode=require >> .env
 
           npm run migration:push
 

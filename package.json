@@ -20,7 +20,8 @@
     "db:migrate": "npm run migration:generate && npm run migration:push",
     "db:migrate:test": "tsx --env-file=.env.test db/migrate.ts",
     "db:reset": "tsx db/reset.ts",
-    "db:reset:test": "if [[ -f .env.test ]]; then tsx --env-file=.env.test db/reset.ts; else npm run db:reset; fi"
+    "db:reset:test": "if [[ -f .env.test ]]; then tsx --env-file=.env.test db/reset.ts; else npm run db:reset; fi",
+    "e2e": "start-server-and-test dev http://localhost:3000 \"cypress open --e2e\""
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^0.8.1",

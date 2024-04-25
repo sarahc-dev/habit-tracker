@@ -1,0 +1,87 @@
+name: Run E2E Tests
+
+on:
+  push:
+    branches:
+      - "*"
+      - "!main"
+
+env:
+  TEST_DATABASE_URL: ${{ secrets.TEST_DATABASE_URL }}
+  PREVIEW_DATABASE_URL: ${{ secrets.PREVIEW_DATABASE_URL }}
+  AUTH_URL: ${{ secrets.AUTH_URL }}
+  AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
+  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+
+jobs:
+  e2e-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: "npm"
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Generate Migration
+        id: generate-migration
+        run: npm run migration:generate
+
+      - name: Check For New File
+        run: |
+          folder_to_check=drizzle
+          if git status -s | grep "??"; then
+          echo "Error: Migration created new files in $folder_to_check. Ensure the migration is up to date."
+          exit 1
+          fi
+
+      - name: Run Migrations
+        run: |
+          touch .env
+
+          echo DATABASE_URL=${{ env.TEST_DATABASE_URL }} >> .env
+
+          npm run migration:push
+
+      - name: Run E2E tests
+        uses: cypress-io/github-action@v6
+        with:
+          build: npm run build
+          start: npm start
+          browser: chrome
+          record: true
+        env:
+          DATABASE_URL: ${{ env.TEST_DATABASE_URL }}
+          AUTH_URL: ${{ env.AUTH_URL }}
+          AUTH_SECRET: ${{ env.AUTH_SECRET }}
+          CYPRESS_RECORD_KEY: ${{ env.CYPRESS_RECORD_KEY }}
+
+  migrate-preview-db:
+    needs: e2e-test
+    runs-on: ubuntu-latest
+    if: ${{ needs.e2e-test.result == 'success'}}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: "npm"
+
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Migrations on Preview Database
+        run: |
+          touch .env
+
+          echo DATABASE_URL=${{ env.PREVIEW_DATABASE_URL }} >> .env
+
+          npm run migration:push

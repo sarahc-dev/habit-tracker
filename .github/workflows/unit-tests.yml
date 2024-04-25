@@ -22,7 +22,7 @@ jobs:
         run: npm ci
 
       - name: Run Jest Unit Tests
-        run: npm test
+        run: npm run test:jest
 
       - name: Run Cypress Component Tests
         uses: cypress-io/github-action@v6
